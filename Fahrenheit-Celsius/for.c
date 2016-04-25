@@ -2,7 +2,7 @@
  * for循环打印华氏转温度
  *
  */
-
+#include <stdio.h>
 void main(){
 	float fahr;        /* 华氏 */
 	float celsius;     /* 温度 */

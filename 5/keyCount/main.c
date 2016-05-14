@@ -20,19 +20,36 @@ struct key{
 	"while",0
 };
 void out();
+void binsearch(char *);
 int main(){
-	FILE *f = fopen("keyCount.c","r");
+	FILE *f = fopen("KeyCount.c","r");
 	char ch;
 	char temp[100] = {'\0'};
 	int tempi=0;
 	while(!feof(f)){
-		while(isalpha(ch=fgetc(f))){
-			temp[tempi] = ch;
-			tempi++;
+		if(isalpha(ch = fgetc(f))){//取出单词
+			tempi = 0;
+			do{
+				temp[tempi] = ch;
+				tempi++;
+			}while(isalpha(ch=fgetc(f)));
+			temp[tempi] = '\0';
+			binsearch(temp);
 		}
 	}
 	out();
 	return 1;
+}
+
+void binsearch(char *s){
+	int length = sizeof(keyCount) / sizeof(struct key);
+	int i = 0;
+	for(;i <length;i++){
+		if(!strcmp(s,keyCount[i].key)){
+			keyCount[i].count += 1;
+			return;
+		}
+	}
 }
 
 void out(){
